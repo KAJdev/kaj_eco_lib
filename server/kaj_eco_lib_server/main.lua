@@ -10,7 +10,7 @@ end
 
 local function getPlayerMoney(player)
     local discordID = GetPlayerDiscordID(player)
-    if money[discordID] == nil do
+    if money[discordID] == nil then
         money[discordID] = config.startingBalance
     end
     return money[discordID]
@@ -31,11 +31,11 @@ end
 
 local funtion changeMoney(user, amount)
     local discordID = GetPlayerDiscordID(user)
-    if money[discordID] == nil do
+    if money[discordID] == nil then
         money[discordID] = 0
     end
     money[discordID] = money[discordID] + amount
-    if money[discordID] < 0 and config.balanceCanBeNegative == false do
+    if money[discordID] < 0 and config.balanceCanBeNegative == false then
         money[discordID] = 0
     end
 end
@@ -47,7 +47,7 @@ local function loadConfig()
 end
 
 local function updateMoneyForAllPlayers()
-    if config.clientModInstalled == true do
+    if config.clientModInstalled == true then
         for id, name in GetPlayers() do
             TriggerClientEvent(id, "recieveMoneyValue", getPlayerMoney(id))
         end
@@ -55,14 +55,14 @@ local function updateMoneyForAllPlayers()
 end
 
 local function giveMoneyThread()
-    for id, name in GetPlayers() do
+    for id, name in GetPlayers() then
         changeMoney(id, config.moneyPerMinute)
     end
     saveMoney()
 end
 
 local function onChat(id, name, message)
-    if message == '/balance' do
+    if message == '/balance' then
         SendChatMessage(id, "Balance: "..config.currencySymbol..tostring(getPlayerMoney(id)))
     end
 end
@@ -75,7 +75,7 @@ local function onInit()
     RegisterEvent("saveMoney", "saveMoney") -- trigger to save money to disk (will send to players if using client sided mod)
     money = loadMoney()
     config = loadConfig()
-    if config.moneyPerMinute > 0 do
+    if config.moneyPerMinute > 0 then
         CreateThread("giveMoneyThread", 60)
     end
     print("-----------------------------------------")
