@@ -1,0 +1,8 @@
+{
+  "version": "0.0.1",
+  "currencyName": "Dollars",
+  "currencySymbol": "$",
+  "startingBalance": 0,
+  "moneyPerMinute": 1,
+  "clientModInstalled": true
+}

@@ -1,8 +1,8 @@
 local M = {}
 
-local money
+local money = 0
 
-local function getMoney()
+function getMoney()
     TriggerServerEvent("clientRequestMoney")
 end
 
@@ -11,7 +11,7 @@ local function recieveMoneyValue(amount)
 end
 
 local function onExtensionLoaded()
-    AddEventHandler("recieveMoneyValue")
+    AddEventHandler("recieveMoneyValue", recieveMoneyValue)
     money = getMoney()
     print(money)
 end
