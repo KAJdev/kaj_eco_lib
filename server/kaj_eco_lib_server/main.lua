@@ -62,7 +62,9 @@ local function onInit()
     RegisterEvent("onChatMessage", "onChat")
     money = loadMoney()
     config = loadConfig()
-    CreateThread("giveMoneyThread", 60)
+    if config.moneyPerMinute > 0 do
+        CreateThread("giveMoneyThread", 60)
+    end
     print("-----------------------------------------")
     print("loaded kaj eco library v"..config.version)
     print("-----------------------------------------")
