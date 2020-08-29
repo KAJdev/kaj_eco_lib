@@ -1,8 +1,7 @@
 local M = {}
 local money = {}
 local config
-
-require("json")
+json = require "json"
 
 local function clientRequestMoney(client)
     TriggerClientEvent(client, "recieveMoneyValue", getPlayerMoney(client))
@@ -29,7 +28,7 @@ local function saveMoney()
     updateMoneyForPlayers()
 end
 
-local funtion changeMoney(user, amount)
+local function changeMoney(user, amount)
     local discordID = GetPlayerDiscordID(user)
     if money[discordID] == nil then
         money[discordID] = 0
