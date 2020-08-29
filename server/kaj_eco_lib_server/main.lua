@@ -29,7 +29,14 @@ local function saveMoney()
 end
 
 local funtion changeMoney(user, amount)
-    money[user] = money[user] + amount
+    local discordID = GetPlayerDiscordID(user)
+    if money[discordID] == nil do
+        money[discordID] = 0
+    end
+    money[discordID] = money[discordID] + amount
+    if money[discordID] < 0 and config.balanceCanBeNegative == false do
+        money[discordID] = 0
+    end
 end
 
 local function loadConfig()
@@ -60,8 +67,11 @@ local function onChat(id, name, message)
 end
 
 local function onInit()
-    RegisterEvent("clientRequestMoney", "clientRequestMoney")
-    RegisterEvent("onChatMessage", "onChat")
+    RegisterEvent("clientRequestMoney", "clientRequestMoney") -- used by the client to request their money value
+    RegisterEvent("onChatMessage", "onChat") -- used buy the server to register commands
+    RegisterEvent("changeMoney", "changeMoney") -- used by other plugins to change money of players. Pass in a server ID and amount (can be negative)
+    RegisterEvent("loadMoney", "loadMoney") -- trigger to load money from disk
+    RegisterEvent("saveMoney", "saveMoney") -- trigger to save money to disk (will send to players if using client sided mod)
     money = loadMoney()
     config = loadConfig()
     if config.moneyPerMinute > 0 do
