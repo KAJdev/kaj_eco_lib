@@ -12,8 +12,8 @@
 
 # Docs
 ## Plugin events
- - changeMoney (<serverID>, <amount>)
- usage: TriggerGlobalEvent("changeMoney", <serverID>, <amount>)
+ - changeMoney (\<serverID>, \<amount>)
+ usage: TriggerGlobalEvent("changeMoney", \<serverID>, \<amount>)
 
  trigger this event to change the value of money for a specific player. This will not save. You must trigger saveMoney in order to save to disk and send to clients
 
