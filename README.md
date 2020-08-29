@@ -22,6 +22,6 @@ trigger this event to change the value of money for a specific player. This will
 trigger to load money from disk
 
 ### saveMoney ()
-> usage: TruggerGlobalEvent("saveMoney")
+> usage: TriggerGlobalEvent("saveMoney")
 
 trigger to save money to disk. If the clientModInstalled value of the config is set to true it will update all clients. Be careful as this could crash players that don't have the lastest version or do not have th mod loaded. A system to prevent this, and only send to clients who have the mod, is in the works.
