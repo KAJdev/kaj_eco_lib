@@ -4,6 +4,7 @@
   "currencySymbol": "$",
   "startingBalance": 0,
   "moneyPerMinute": 1,
-  "clientModInstalled": true,
-  "balanceCanBeNegative": false
+  "clientModInstalled": false,
+  "balanceCanBeNegative": false,
+  "clientsCanPayOthers": true
 }
