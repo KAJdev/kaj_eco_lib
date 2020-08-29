@@ -11,7 +11,7 @@ local function recieveMoneyValue(amount)
 end
 
 local function onExtensionLoaded()
-    AddEventHandler("recieveMoneyValue", recieveMoneyValue)
+    AddEventHandler("recieveMoneyValue", "recieveMoneyValue")
     money = getMoney()
     print(money)
 end
