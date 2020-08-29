@@ -12,6 +12,7 @@ local function getPlayerMoney(player)
     local discordID = GetPlayerDiscordID(player)
     if money[discordID] == nil do
         money[discordID] = config.startingBalance
+    end
     return money[discordID]
 end
 
