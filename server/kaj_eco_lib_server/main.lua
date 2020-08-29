@@ -1,7 +1,9 @@
 local M = {}
 local money = {}
-local config
-json = require "json"
+local config = {}
+local folderOfThisFile = "Resources\\Server\\kaj_eco_lib_server\\"
+local json = require('Resources.Server.kaj_eco_lib_server.json')
+
 
 local function clientRequestMoney(client)
     TriggerClientEvent(client, "recieveMoneyValue", getPlayerMoney(client))
@@ -16,13 +18,13 @@ local function getPlayerMoney(player)
 end
 
 local function loadMoney()
-    local file = io.open("data.json", "r")
+    local file = io.open(folderOfThisFile.."data.json", "r")
     money = json.decode(file:read("*a"))
     file:close()
 end
 
 local function saveMoney()
-    local file = assert(io.open("data.json", "w"))
+    local file = assert(io.open(folderOfThisFile.."data.json", "w"))
     file:write(json.encode(result))
     file:close()
     updateMoneyForPlayers()
@@ -40,8 +42,9 @@ local function changeMoney(user, amount)
 end
 
 local function loadConfig()
-    local file = io.open("config.json", "r")
-    config = json.decode(file:read("*a"))
+    local file = io.open(folderOfThisFile.."config.json", "rb")
+    content = file:read("*a")
+    config = json.decode(content)
     file:close()
 end
 
@@ -66,14 +69,14 @@ local function onChat(id, name, message)
     end
 end
 
-local function onInit()
+function onInit()
     RegisterEvent("clientRequestMoney", "clientRequestMoney") -- used by the client to request their money value
     RegisterEvent("onChatMessage", "onChat") -- used buy the server to register commands
     RegisterEvent("changeMoney", "changeMoney") -- used by other plugins to change money of players. Pass in a server ID and amount (can be negative)
     RegisterEvent("loadMoney", "loadMoney") -- trigger to load money from disk
     RegisterEvent("saveMoney", "saveMoney") -- trigger to save money to disk (will send to players if using client sided mod)
-    money = loadMoney()
-    config = loadConfig()
+    loadMoney()
+    loadConfig()
     if config.moneyPerMinute > 0 then
         CreateThread("giveMoneyThread", 60)
     end
