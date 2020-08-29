@@ -10,6 +10,8 @@ end
 
 local function getPlayerMoney(player)
     local discordID = GetPlayerDiscordID(player)
+    if money[discordID] == nil do
+        money[discordID] = cinfig.startingBalance
     return money[discordID]
 end
 
