@@ -55,7 +55,7 @@ local function updateMoneyForAllPlayers()
 end
 
 local function giveMoneyThread()
-    for id, name in GetPlayers() then
+    for id, name in GetPlayers() do
         changeMoney(id, config.moneyPerMinute)
     end
     saveMoney()
