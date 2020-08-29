@@ -10,19 +10,18 @@
 - put the client side mod zip archive into Resources/Client/ Directory on your Server. (if you are OK with only being able to use commands you can skip the client side mod)
 - restart your server.
 
-# Docs
 ## Plugin events
- - changeMoney (\<serverID>, \<amount>)
- usage: TriggerGlobalEvent("changeMoney", \<serverID>, \<amount>)
+### changeMoney (\<serverID>, \<amount>)
+> usage: TriggerGlobalEvent("changeMoney", \<serverID>, \<amount>)
 
- trigger this event to change the value of money for a specific player. This will not save. You must trigger saveMoney in order to save to disk and send to clients
+trigger this event to change the value of money for a specific player. This will not save. You must trigger saveMoney in order to save to disk and send to clients
 
- - loadMoney ()
- usage: TriggerGlobalEvent("loadMoney")
+### loadMoney ()
+> usage: TriggerGlobalEvent("loadMoney")
 
 trigger to load money from disk
 
- - saveMoney ()
- usage: TruggerGlobalEvent("saveMoney")
+### saveMoney ()
+> usage: TruggerGlobalEvent("saveMoney")
 
- trigger to save money to disk. If the clientModInstalled value of the config is set to true it will update all clients. Be careful as this could crash players that don't have the lastest version or do not have th mod loaded. A system to prevent this, and only send to clients who have the mod, is in the works.
+trigger to save money to disk. If the clientModInstalled value of the config is set to true it will update all clients. Be careful as this could crash players that don't have the lastest version or do not have th mod loaded. A system to prevent this, and only send to clients who have the mod, is in the works.
